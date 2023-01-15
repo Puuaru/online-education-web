@@ -6,19 +6,47 @@
                    type="card"
                    arrow="always"
                    height="400px">
-        <el-carousel-item v-for="item in 6"
-                          :key="item">
-          <h3 class="medium">{{ item }}</h3>
+        <el-carousel-item v-for="banner in banners"
+                          :key="banner.id">
+          <img :src="banner.imageUrl"
+               width="100%"
+               height="100%"
+               alt="imageUrl">
         </el-carousel-item>
       </el-carousel>
     </div>
-
   </div>
 </template>
 
 <script>
+import banner from '@/api/banner'
+import index from '@/api/index'
+
 export default {
   name: 'IndexPage',
+  data() {
+    return {
+      index: '',
+      banners: [],
+      test: '我超',
+    }
+  },
+  created() {
+    this.getBanner()
+  },
+  methods: {
+    getBanner() {
+      banner
+        .getBannerIndex()
+        .then((result) => {
+          this.banners = result.data.data.items
+          console.log(result)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+  },
 }
 </script>
 
