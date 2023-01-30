@@ -8,9 +8,9 @@ const service = axios.create({
 
 // 设置拦截器
 service.interceptors.request.use((config) => {
-  if (cookie.get('web-token')) {
-    // 客户持有cookie时将cookie取出
-    config.headers['web-token'] = cookie.get('web-token')
+  if (cookie.get('token')) {
+    // 客户持有名为token的cookie时将其取出放入请求头
+    config.headers['token'] = cookie.get('token')
   }
   return config
 })
