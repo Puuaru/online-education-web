@@ -1,10 +1,10 @@
 import request from '@/utils/request'
 
 export default {
-  loginInApp(memberVo) {
+  loginInApp(loginInfo) {
     return request({
       url: '/center/member/login',
-      data: memberVo,
+      data: loginInfo,
       method: 'post',
     })
   },
