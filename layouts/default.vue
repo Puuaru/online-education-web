@@ -1,71 +1,73 @@
 <template>
   <div class="in-wrap">
     <!-- 公共头 -->
-    <header class="header">
+    <header id="header">
       <section class="container">
         <h1 id="logo">
-          <a href="#" title="Education">
+          <nuxt-link to="/" title="Education">
             <img src="@/assets/img/logo.png" width="100%" alt="Education" />
-          </a>
+          </nuxt-link>
         </h1>
         <div class="h-r-nsl">
-          <!-- 导航 -->
           <ul class="nav">
-            <router-link to="/" tag="li" active-class="current" exact>
+            <nuxt-link to="/" tag="li" active-class="current" exact>
               <a>首页</a>
-            </router-link>
-            <router-link to="/course" tag="li" active-class="current" exact>
+            </nuxt-link>
+            <nuxt-link to="/course" tag="li" active-class="current">
               <a>课程</a>
-            </router-link>
-            <router-link to="/teacher" tag="li" active-class="current" exact>
+            </nuxt-link>
+            <nuxt-link to="/teacher" tag="li" active-class="current">
               <a>名师</a>
-            </router-link>
-            <router-link to="/article" tag="li" active-class="current" exact>
+            </nuxt-link>
+            <nuxt-link to="/article" tag="li" active-class="current">
               <a>文章</a>
-            </router-link>
-            <router-link to="/qa" tag="li" active-class="current" exact>
+            </nuxt-link>
+            <nuxt-link to="/qa" tag="li" active-class="current">
               <a>问答</a>
-            </router-link>
+            </nuxt-link>
           </ul>
-          <!-- 登录 -->
           <ul class="h-r-login">
-            <!-- 未登录显示第一个li, 登录后显示第2、3个li -->
-            <li id="no-login">
-              <a href="/login" title="登录">
+            <li id="no-login" v-if="!memberInfo.id">
+              <nuxt-link to="/login" title="登录">
                 <em class="icon18 login-icon">&nbsp;</em>
                 <span class="vam ml5">登录</span>
-              </a>
+              </nuxt-link>
               |
-              <a href="/register" title="注册">
+              <nuxt-link to="/register" title="注册">
                 <span class="vam ml5">注册</span>
-              </a>
+              </nuxt-link>
             </li>
-            <li class="mr10 undis" id="is-login-one">
+
+            <li class="mr10" id="is-login-one" v-if="memberInfo.id">
               <a href="#" title="消息" id="headerMsgCountId">
                 <em class="icon18 news-icon">&nbsp;</em>
               </a>
               <q class="red-point" style="display: none">&nbsp;</q>
             </li>
-            <li class="h-r-user undis" id="is-login-two">
+
+            <li class="h-r-user" id="is-login-two" v-if="memberInfo.id">
               <a href="#" title>
                 <img
-                  src="@/assets/img/avatar-boy.gif"
+                  :src="memberInfo.avatar"
                   width="30"
                   height="30"
                   class="vam picImg"
                   alt
                 />
-                <span class="vam disIb" id="userName"></span>
+                <span class="vam disIb" id="userName">{{
+                  memberInfo.nickname
+                }}</span>
               </a>
               <a
-                href="javascript:void(0)"
+                href="javascript:void(0);"
                 title="退出"
-                onclick="exit();"
+                @click="logout()"
                 class="ml5"
                 >退出</a
               >
             </li>
           </ul>
+
           <aside class="h-r-search">
             <form action="#" method="post">
               <label class="h-r-s-box">
@@ -159,6 +161,7 @@
         </div>
       </section>
     </footer>
+    
   </div>
 </template>
 <script>
@@ -167,6 +170,46 @@ import '@/assets/css/theme.css'
 import '@/assets/css/global.css'
 import '@/assets/css/web.css'
 
-export default {}
-</script>
+import cookie from 'js-cookie'
 
+export default {
+  data() {
+    return {
+      memberInfo: {
+        id: '',
+        nickname: '',
+        email: '',
+        age: '',
+        sex: '',
+        avatar: '',
+      },
+    }
+  },
+
+  created() {
+    this.getMemberInfo()
+  },
+
+  methods: {
+    getMemberInfo() {
+      let cookieValue = cookie.get('EDUSER')
+      if (cookieValue) {
+        this.memberInfo = JSON.parse(cookieValue)
+      }
+    },
+
+    logout() {
+      cookie.remove('token')
+      cookie.remove('EDUSER')
+      this.memberInfo = {
+        id: '',
+        nickname: '',
+        email: '',
+        age: '',
+        sex: '',
+        avatar: '',
+      }
+    },
+  },
+}
+</script>

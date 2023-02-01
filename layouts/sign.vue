@@ -1,10 +1,8 @@
 <template>
-  <div class="sign" id="header"
-    style="margin: 0px auto;"
-  >
+  <div class="sign" id="header">
     <h1 id="logo">
-      <nuxt-link to="/" title="在线教育">
-        <img src="@/assets/img/logo.png" alt="在线教育" />
+      <nuxt-link to="/" title="Education">
+        <img src="@/assets/img/logo.png" alt="Education" />
       </nuxt-link>
     </h1>
     <nuxt />
@@ -15,4 +13,4 @@
 export default {}
 </script>
 
-<style scoped></style>
+<style></style>
