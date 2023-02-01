@@ -88,8 +88,6 @@
 </template>
 
 <script>
-import '~/assets/css/sign.css'
-
 import register from '@/api/register'
 
 export default {
@@ -182,4 +180,6 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+@import url('~/assets/css/sign.css');
+</style>

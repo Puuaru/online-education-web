@@ -81,8 +81,6 @@
 </template>
 
 <script>
-import '@/assets/css/sign.css'
-
 import login from '@/api/login'
 import cookie from 'js-cookie'
 
@@ -133,4 +131,6 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+@import url('~/assets/css/sign.css');
+</style>
