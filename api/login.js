@@ -13,5 +13,11 @@ export default {
       url: '/center/member/memberInfo',
       method: 'get',
     })
-  }
+  },
+  loginInGithub() {
+    return request({
+      url: '/center/github',
+      method: 'get',
+    })
+  },
 }

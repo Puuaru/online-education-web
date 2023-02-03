@@ -28,14 +28,14 @@
           </ul>
           <ul class="h-r-login">
             <li id="no-login" v-if="!memberInfo.id">
-              <nuxt-link to="/login" title="登录">
+              <a href="/login" title="登录">
                 <em class="icon18 login-icon">&nbsp;</em>
                 <span class="vam ml5">登录</span>
-              </nuxt-link>
+              </a>
               |
-              <nuxt-link to="/register" title="注册">
+              <a href="/register" title="注册">
                 <span class="vam ml5">注册</span>
-              </nuxt-link>
+              </a>
             </li>
 
             <li class="mr10" id="is-login-one" v-if="memberInfo.id">
@@ -161,7 +161,6 @@
         </div>
       </section>
     </footer>
-    
   </div>
 </template>
 <script>
@@ -171,6 +170,7 @@ import '@/assets/css/global.css'
 import '@/assets/css/web.css'
 
 import cookie from 'js-cookie'
+import login from '@/api/login'
 
 export default {
   data() {
@@ -183,10 +183,14 @@ export default {
         sex: '',
         avatar: '',
       },
+      token: ''
     }
   },
 
   created() {
+    if (this.$route.query.token) {
+      this.getGithubLoginToken()
+    }
     this.getMemberInfo()
   },
 
@@ -196,6 +200,15 @@ export default {
       if (cookieValue) {
         this.memberInfo = JSON.parse(cookieValue)
       }
+    },
+
+    getGithubLoginToken() {
+      this.token = this.$route.query.token
+      cookie.set('token', this.token)
+      login.getMemberInfo().then((response) => {
+        this.memberInfo = response.data.data.items
+        cookie.set('EDUSER', this.memberInfo)
+      })
     },
 
     logout() {

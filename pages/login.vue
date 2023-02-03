@@ -50,12 +50,7 @@
         <h6>社交帐号直接登录</h6>
         <ul>
           <li>
-            <a
-              id="github"
-              class="github"
-              target="_self"
-              href="http://localhost/login/github"
-            >
+            <a id="github" class="github" target="_self" @click="loginInGithub" href="#">
               <svg
                 t="1618575299610"
                 class="icon"
@@ -81,6 +76,8 @@
 </template>
 
 <script>
+import '~/assets/css/sign.css'
+
 import login from '@/api/login'
 import cookie from 'js-cookie'
 
@@ -127,10 +124,12 @@ export default {
       }
       return callback()
     },
+    loginInGithub() {
+      // login.loginInGithub()
+      window.location.href = "https://github.com/login/oauth/authorize?client_id=8b5c7a108f3f735bd0f5"
+    },
   },
 }
 </script>
 
-<style scoped>
-@import url('~/assets/css/sign.css');
-</style>
+<style scoped></style>
