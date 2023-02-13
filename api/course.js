@@ -7,7 +7,7 @@ export default {
       method: 'get',
     })
   },
-  getSubject() {
+  getSubjects() {
     return request({
       url: '/edu/subject',
       method: 'get',

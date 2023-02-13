@@ -75,7 +75,8 @@
                 <a title="最新" href="#">最新</a>
               </li>
               <li class="current bg-orange">
-                <a title="价格" href="#">价格&nbsp;
+                <a title="价格" href="#"
+                  >价格&nbsp;
                   <span>↓</span>
                 </a>
               </li>
@@ -86,7 +87,9 @@
           <!-- /无数据提示 开始-->
           <section class="no-data-wrap">
             <em class="icon30 no-data-ico">&nbsp;</em>
-            <span class="c-666 fsize14 ml10 vam">没有相关数据，小编正在努力整理中...</span>
+            <span class="c-666 fsize14 ml10 vam"
+              >没有相关数据，小编正在努力整理中...</span
+            >
           </section>
           <!-- /无数据提示 结束-->
           <article class="comm-course-list">
@@ -94,13 +97,27 @@
               <li>
                 <div class="cc-l-wrap">
                   <section class="course-img">
-                    <img src="@/assets/photo/course/1442295592705.jpg" class="img-responsive" alt="听力口语">
+                    <img
+                      src="@/assets/photo/course/1442295592705.jpg"
+                      class="img-responsive"
+                      alt="听力口语"
+                    />
                     <div class="cc-mask">
-                      <a href="/course/1" title="开始学习" class="comm-btn c-btn-1">开始学习</a>
+                      <a
+                        href="/course/1"
+                        title="开始学习"
+                        class="comm-btn c-btn-1"
+                        >开始学习</a
+                      >
                     </div>
                   </section>
                   <h3 class="hLh30 txtOf mt10">
-                    <a href="/course/1" title="听力口语" class="course-title fsize18 c-333">听力口语</a>
+                    <a
+                      href="/course/1"
+                      title="听力口语"
+                      class="course-title fsize18 c-333"
+                      >听力口语</a
+                    >
                   </h3>
                   <section class="mt10 hLh20 of">
                     <span class="fr jgTag bg-green">
@@ -117,13 +134,27 @@
               <li>
                 <div class="cc-l-wrap">
                   <section class="course-img">
-                    <img src="@/assets/photo/course/1442295581911.jpg" class="img-responsive" alt="Java精品课程">
+                    <img
+                      src="@/assets/photo/course/1442295581911.jpg"
+                      class="img-responsive"
+                      alt="Java精品课程"
+                    />
                     <div class="cc-mask">
-                      <a href="/course/1" title="开始学习" class="comm-btn c-btn-1">开始学习</a>
+                      <a
+                        href="/course/1"
+                        title="开始学习"
+                        class="comm-btn c-btn-1"
+                        >开始学习</a
+                      >
                     </div>
                   </section>
                   <h3 class="hLh30 txtOf mt10">
-                    <a href="/course/1" title="Java精品课程" class="course-title fsize18 c-333">Java精品课程</a>
+                    <a
+                      href="/course/1"
+                      title="Java精品课程"
+                      class="course-title fsize18 c-333"
+                      >Java精品课程</a
+                    >
                   </h3>
                   <section class="mt10 hLh20 of">
                     <span class="fr jgTag bg-green">
@@ -140,13 +171,27 @@
               <li>
                 <div class="cc-l-wrap">
                   <section class="course-img">
-                    <img src="@/assets/photo/course/1442295604295.jpg" class="img-responsive" alt="C4D零基础">
+                    <img
+                      src="@/assets/photo/course/1442295604295.jpg"
+                      class="img-responsive"
+                      alt="C4D零基础"
+                    />
                     <div class="cc-mask">
-                      <a href="/course/1" title="开始学习" class="comm-btn c-btn-1">开始学习</a>
+                      <a
+                        href="/course/1"
+                        title="开始学习"
+                        class="comm-btn c-btn-1"
+                        >开始学习</a
+                      >
                     </div>
                   </section>
                   <h3 class="hLh30 txtOf mt10">
-                    <a href="/course/1" title="C4D零基础" class="course-title fsize18 c-333">C4D零基础</a>
+                    <a
+                      href="/course/1"
+                      title="C4D零基础"
+                      class="course-title fsize18 c-333"
+                      >C4D零基础</a
+                    >
                   </h3>
                   <section class="mt10 hLh20 of">
                     <span class="fr jgTag bg-green">
@@ -167,13 +212,23 @@
                       src="@/assets/photo/course/1442302831779.jpg"
                       class="img-responsive"
                       alt="数学给宝宝带来的兴趣"
-                    >
+                    />
                     <div class="cc-mask">
-                      <a href="/course/1" title="开始学习" class="comm-btn c-btn-1">开始学习</a>
+                      <a
+                        href="/course/1"
+                        title="开始学习"
+                        class="comm-btn c-btn-1"
+                        >开始学习</a
+                      >
                     </div>
                   </section>
                   <h3 class="hLh30 txtOf mt10">
-                    <a href="/course/1" title="数学给宝宝带来的兴趣" class="course-title fsize18 c-333">数学给宝宝带来的兴趣</a>
+                    <a
+                      href="/course/1"
+                      title="数学给宝宝带来的兴趣"
+                      class="course-title fsize18 c-333"
+                      >数学给宝宝带来的兴趣</a
+                    >
                   </h3>
                   <section class="mt10 hLh20 of">
                     <span class="fr jgTag bg-green">
@@ -194,9 +249,14 @@
                       src="@/assets/photo/course/1442295455437.jpg"
                       class="img-responsive"
                       alt="零基础入门学习Python课程学习"
-                    >
+                    />
                     <div class="cc-mask">
-                      <a href="/course/1" title="开始学习" class="comm-btn c-btn-1">开始学习</a>
+                      <a
+                        href="/course/1"
+                        title="开始学习"
+                        class="comm-btn c-btn-1"
+                        >开始学习</a
+                      >
                     </div>
                   </section>
                   <h3 class="hLh30 txtOf mt10">
@@ -204,7 +264,8 @@
                       href="/course/1"
                       title="零基础入门学习Python课程学习"
                       class="course-title fsize18 c-333"
-                    >零基础入门学习Python课程学习</a>
+                      >零基础入门学习Python课程学习</a
+                    >
                   </h3>
                   <section class="mt10 hLh20 of">
                     <span class="fr jgTag bg-green">
@@ -225,13 +286,23 @@
                       src="@/assets/photo/course/1442295570359.jpg"
                       class="img-responsive"
                       alt="MySql从入门到精通"
-                    >
+                    />
                     <div class="cc-mask">
-                      <a href="/course/1" title="开始学习" class="comm-btn c-btn-1">开始学习</a>
+                      <a
+                        href="/course/1"
+                        title="开始学习"
+                        class="comm-btn c-btn-1"
+                        >开始学习</a
+                      >
                     </div>
                   </section>
                   <h3 class="hLh30 txtOf mt10">
-                    <a href="/course/1" title="MySql从入门到精通" class="course-title fsize18 c-333">MySql从入门到精通</a>
+                    <a
+                      href="/course/1"
+                      title="MySql从入门到精通"
+                      class="course-title fsize18 c-333"
+                      >MySql从入门到精通</a
+                    >
                   </h3>
                   <section class="mt10 hLh20 of">
                     <span class="fr jgTag bg-green">
@@ -248,13 +319,27 @@
               <li>
                 <div class="cc-l-wrap">
                   <section class="course-img">
-                    <img src="@/assets/photo/course/1442302852837.jpg" class="img-responsive" alt="搜索引擎优化技术">
+                    <img
+                      src="@/assets/photo/course/1442302852837.jpg"
+                      class="img-responsive"
+                      alt="搜索引擎优化技术"
+                    />
                     <div class="cc-mask">
-                      <a href="/course/1" title="开始学习" class="comm-btn c-btn-1">开始学习</a>
+                      <a
+                        href="/course/1"
+                        title="开始学习"
+                        class="comm-btn c-btn-1"
+                        >开始学习</a
+                      >
                     </div>
                   </section>
                   <h3 class="hLh30 txtOf mt10">
-                    <a href="/course/1" title="搜索引擎优化技术" class="course-title fsize18 c-333">搜索引擎优化技术</a>
+                    <a
+                      href="/course/1"
+                      title="搜索引擎优化技术"
+                      class="course-title fsize18 c-333"
+                      >搜索引擎优化技术</a
+                    >
                   </h3>
                   <section class="mt10 hLh20 of">
                     <span class="fr jgTag bg-green">
@@ -271,13 +356,27 @@
               <li>
                 <div class="cc-l-wrap">
                   <section class="course-img">
-                    <img src="@/assets/photo/course/1442295379715.jpg" class="img-responsive" alt="20世纪西方音乐">
+                    <img
+                      src="@/assets/photo/course/1442295379715.jpg"
+                      class="img-responsive"
+                      alt="20世纪西方音乐"
+                    />
                     <div class="cc-mask">
-                      <a href="/course/1" title="开始学习" class="comm-btn c-btn-1">开始学习</a>
+                      <a
+                        href="/course/1"
+                        title="开始学习"
+                        class="comm-btn c-btn-1"
+                        >开始学习</a
+                      >
                     </div>
                   </section>
                   <h3 class="hLh30 txtOf mt10">
-                    <a href="/course/1" title="20世纪西方音乐" class="course-title fsize18 c-333">20世纪西方音乐</a>
+                    <a
+                      href="/course/1"
+                      title="20世纪西方音乐"
+                      class="course-title fsize18 c-333"
+                      >20世纪西方音乐</a
+                    >
                   </h3>
                   <section class="mt10 hLh20 of">
                     <span class="fr jgTag bg-green">
@@ -314,5 +413,50 @@
   </div>
 </template>
 <script>
-export default {};
+import course from '@/api/course'
+
+export default {
+  data() {
+    return {
+      coursesInfo: {},
+      subjects: [
+        {
+          id: '',
+          childrens: [],
+        },
+      ],
+      current: 1,
+      limit: 8,
+      courseQuery: {
+        subjectId: '',
+        subjectParentId: '',
+        priceSort: '',
+        buyCountSort: '',
+        gmtCreateSort: '',
+        courseName: '',
+      },
+    }
+  },
+
+  created() {
+    this.getSubjects()
+    this.getCourseByQuery()
+  },
+
+  methods: {
+    getSubjects() {
+      course.getSubjects().then((response) => {
+        this.subjects = response.data.data.items
+      })
+    },
+
+    getCourseByQuery(current = 1) {
+      course
+        .getCourseByQuery(current, this.limit, this.courseQuery)
+        .then((response) => {
+          this.coursesInfo = response.data.data.items
+        })
+    },
+  },
+}
 </script>
