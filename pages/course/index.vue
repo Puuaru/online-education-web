@@ -15,26 +15,28 @@
             </dt>
             <dd class="c-s-dl-li">
               <ul class="clearfix">
+                <!-- 一级分类 -->
                 <li>
-                  <a title="全部" href="#">全部</a>
+                  <!-- <a title="全部" href="#">全部</a> -->
+                  <a
+                    title="全部"
+                    :class="{ active: firstIndex === -1 }"
+                    @click="clearSubjectFilter()"
+                    href="#"
+                    >全部</a
+                  >
                 </li>
-                <li>
-                  <a title="数据库" href="#">数据库</a>
-                </li>
-                <li class="current">
-                  <a title="外语考试" href="#">外语考试</a>
-                </li>
-                <li>
-                  <a title="教师资格证" href="#">教师资格证</a>
-                </li>
-                <li>
-                  <a title="公务员" href="#">公务员</a>
-                </li>
-                <li>
-                  <a title="移动开发" href="#">移动开发</a>
-                </li>
-                <li>
-                  <a title="操作系统" href="#">操作系统</a>
+                <li
+                  v-for="(subjectFirst, index) in subjects"
+                  v-bind:key="subjectFirst.id"
+                >
+                  <a
+                    :title="subjectFirst.title"
+                    href="#"
+                    @click="selectFirstSubject(index)"
+                    :class="{ active: firstIndex === index }"
+                    >{{ subjectFirst.title }}</a
+                  >
                 </li>
               </ul>
             </dd>
@@ -44,15 +46,19 @@
               <span class="c-999 fsize14"></span>
             </dt>
             <dd class="c-s-dl-li">
-              <ul class="clearfix">
-                <li>
-                  <a title="职称英语" href="#">职称英语</a>
-                </li>
-                <li>
-                  <a title="英语四级" href="#">英语四级</a>
-                </li>
-                <li>
-                  <a title="英语六级" href="#">英语六级</a>
+              <ul class="clearfix" v-if="firstIndex !== -1">
+                <!-- 二级分类 -->
+                <li
+                  v-for="(subjectSecond, index) in subjects[firstIndex]
+                    .children"
+                  v-bind:key="subjectSecond.id"
+                >
+                  <a
+                    :title="subjectSecond.title"
+                    href="#"
+                    @click="selectSecondSubject(subjectSecond.id, index)"
+                    :class="{ active: secondIndex === index }"
+                  >{{ subjectSecond.title }}</a>
                 </li>
               </ul>
             </dd>
@@ -422,7 +428,7 @@ export default {
       subjects: [
         {
           id: '',
-          childrens: [],
+          children: [],
         },
       ],
       current: 1,
@@ -437,8 +443,8 @@ export default {
         courseName: '',
       },
       // 用于进行分类检索的变量，-1则为非分类状态
-      firstIndex: '',
-      secondIndex: '',
+      firstIndex: -1,
+      secondIndex: -1,
     }
   },
 
@@ -476,6 +482,20 @@ export default {
       this.secondIndex = index
       this.getCourseByQuery()
     },
+
+    clearSubjectFilter() {
+      this.firstIndex = -1
+      this.secondIndex = -1
+      this.courseQuery = {}
+      this.getCourseByQuery()
+    },
   },
 }
 </script>
+
+<style scoped>
+.active {
+  background: #68cb9b;
+  color: #fff;
+}
+</style>
