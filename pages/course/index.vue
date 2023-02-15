@@ -427,6 +427,7 @@ export default {
       ],
       current: 1,
       limit: 8,
+      total: 0,
       courseQuery: {
         subjectId: '',
         subjectParentId: '',
@@ -435,6 +436,9 @@ export default {
         gmtCreateSort: '',
         courseName: '',
       },
+      // 用于进行分类检索的变量，-1则为非分类状态
+      firstIndex: '',
+      secondIndex: '',
     }
   },
 
@@ -455,7 +459,22 @@ export default {
         .getCourseByQuery(current, this.limit, this.courseQuery)
         .then((response) => {
           this.coursesInfo = response.data.data.items
+          this.total = response.data.data.total
         })
+    },
+
+    selectFirstSubject(index) {
+      this.firstIndex = index
+      this.secondIndex = -1
+      this.courseQuery.subjectParentId = this.subjects[index].id
+      this.courseQuery.subjectId = ''
+      this.getCourseByQuery()
+    },
+
+    selectSecondSubject(subjectId, index) {
+      this.courseQuery.subjectId = subjectId
+      this.secondIndex = index
+      this.getCourseByQuery()
     },
   },
 }
