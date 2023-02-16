@@ -74,12 +74,14 @@
                 <input
                   type="text"
                   placeholder="输入想搜索的课程"
-                  name="queryCourse.courseName"
+                  v-model="courseName"
                   value
                 />
-                <button class="s-btn" type="submit">
-                  <em class="icon18">&nbsp;</em>
-                </button>
+                <nuxt-link :to="{path: '/course', query: {courseName: courseName}}">
+                  <button class="s-btn" type="submit">
+                    <em class="icon18">&nbsp;</em>
+                  </button>
+                </nuxt-link>
               </label>
             </form>
           </aside>
@@ -183,7 +185,8 @@ export default {
         sex: '',
         avatar: '',
       },
-      token: ''
+      token: '',
+      courseName: '',
     }
   },
 
