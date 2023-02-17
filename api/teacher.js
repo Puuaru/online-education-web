@@ -7,10 +7,11 @@ export default {
       method: 'get',
     })
   },
-  getTeacherListPage(current, limit) {
+  getTeacherListPage(current, limit, teacherQuery) {
     return request({
-      url: `/edu/teacher/page/${current}/${limit}`,
-      method: 'get',
+      url: `/edu/teacher/page/condition/${current}/${limit}`,
+      method: 'post',
+      data: teacherQuery,
     })
   },
 }

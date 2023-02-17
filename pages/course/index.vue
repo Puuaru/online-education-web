@@ -235,16 +235,20 @@ export default {
   },
 
   created() {
-    this.courseQuery.courseName = this.$route.query.courseName
+    if (this.courseQuery.courseName) {
+      this.courseQuery.courseName = this.$route.query.courseName
+    }
     this.getSubjects()
     this.getCourseByQuery()
   },
 
   watch: {
     $route: function () {
-      this.courseQuery.courseName = this.$route.query.courseName
+      if (this.courseQuery.courseName) {
+        this.courseQuery.courseName = this.$route.query.courseName
+      }
       this.getCourseByQuery()
-    }
+    },
   },
 
   methods: {
