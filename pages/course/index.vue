@@ -175,15 +175,6 @@
         </div>
         <!-- 公共分页 开始 -->
         <div>
-          <!-- <div class="paging"> -->
-          <!--   <a class="undisable" title>首</a> -->
-          <!--   <a id="backpage" class="undisable" href="#" title>&lt;</a> -->
-          <!--   <a href="#" title class="current undisable">1</a> -->
-          <!--   <a href="#" title>2</a> -->
-          <!--   <a id="nextpage" href="#" title>&gt;</a> -->
-          <!--   <a href="#" title>末</a> -->
-          <!--   <div class="clear"></div> -->
-          <!-- </div> -->
           <el-pagination
             background
             :total="total"
