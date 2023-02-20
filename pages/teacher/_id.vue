@@ -12,17 +12,21 @@
         <section class="fl t-infor-box c-desc-content">
           <div class="mt20 ml20">
             <section class="t-infor-pic">
-              <img src="~/assets/photo/teacher/1442297885942.jpg" />
+              <img width="300" height="400" :src="teacherInfo.avatar" alt />
             </section>
             <h3 class="hLh30">
-              <span class="fsize24 c-333">姚晨&nbsp;高级讲师</span>
+              <span class="fsize24 c-333"
+                >{{ teacherInfo.name }}&nbsp;{{
+                  teacherInfo === 0 ? '一般讲师' : '高级讲师'
+                }}</span
+              >
             </h3>
             <section class="mt10">
-              <span class="t-tag-bg">北京师范大学法学院副教授</span>
+              <span class="t-tag-bg">{{ teacherInfo.career }}</span>
             </section>
             <section class="t-infor-txt">
               <p class="mt20">
-                北京师范大学法学院副教授、清华大学法学博士。自2004年至今已有9年的司法考试培训经验。长期从事司法考试辅导，深知命题规律，了解解题技巧。内容把握准确，授课重点明确，层次分明，调理清晰，将法条法理与案例有机融合，强调综合，深入浅出。
+                {{ teacherInfo.intro }}
               </p>
             </section>
             <div class="clear"></div>
@@ -53,12 +57,7 @@
               <li v-for="course in courses" v-bind:key="course.id">
                 <div class="cc-l-wrap">
                   <section class="course-img">
-                    <img
-                      width="270"
-                      height="150"
-                      :src="course.cover"
-                      class="img-responsive"
-                    />
+                    <img width="270" height="150" :src="course.cover" alt />
                     <div class="cc-mask">
                       <nuxt-link
                         :to="`/course/${course.id}`"
