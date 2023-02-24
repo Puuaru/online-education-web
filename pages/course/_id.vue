@@ -172,5 +172,33 @@
 </template>
 
 <script>
-export default {};
+import course from '@/api/course';
+
+export default {
+  data() {
+    return {
+      courseId : '',
+      courseInfo: {},
+      chapters: {}
+    }
+  },
+
+  created() {
+    if (this.$route.params && this.$route.params.id) {
+      this.courseId = this.$route.params.id
+    }
+    this.getCourseDetails()
+  },
+
+  methods: {
+    getCourseDetails() {
+      if (this.courseId) {
+        course.getCourseDetails(this.courseId).then((respond) => {
+          this.courseInfo = respond.data.data.details
+          this.chapters = respond.data.data.chapters
+        })
+      }
+    }
+  }
+};
 </script>
