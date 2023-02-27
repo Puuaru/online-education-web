@@ -44,8 +44,21 @@
               </span>
             </section>
             <section class="c-attr-mt">
-              <a href="#" title="立即观看" class="comm-btn c-btn-3" v-if="isPurchased()">立即观看</a>
-              <a href="#" title="立即购买" class="comm-btn c-btn-3" v-else>立即购买</a>
+              <a
+                href="#"
+                title="立即观看"
+                class="comm-btn c-btn-3"
+                v-if="available"
+                >立即观看</a
+              >
+              <a
+                @click="createOrder()"
+                href="#"
+                title="立即购买"
+                class="comm-btn c-btn-3"
+                v-else
+                >立即购买</a
+              >
             </section>
           </section>
         </aside>
@@ -110,25 +123,44 @@
                       <menu id="lh-menu" class="lh-menu mt10 mr10">
                         <ul>
                           <!-- 文件目录 -->
-                          <li class="lh-menu-stair" v-for="(chapter, index) in chapters" v-bind:key="chapter.id">
+                          <li
+                            class="lh-menu-stair"
+                            v-for="(chapter, index) in chapters"
+                            v-bind:key="chapter.id"
+                          >
                             <a
                               href="javascript: void(0)"
                               :title="chapter.title"
                               class="current-1"
                             >
-                              <em class="lh-menu-i-1 icon18 mr10"></em>{{ chapter.title }}
+                              <em class="lh-menu-i-1 icon18 mr10"></em
+                              >{{ chapter.title }}
                             </a>
                             <ol class="lh-menu-ol" style="display: block">
-                              <li class="lh-menu-second ml30" v-for="(video) in chapters[index].children" v-bind:key="video.id">
-                                <nuxt-link :to="`/video/${video.id}`" title v-if="video.isFree === 1 || isPurchased()">
+                              <li
+                                class="lh-menu-second ml30"
+                                v-for="video in chapters[index].children"
+                                v-bind:key="video.id"
+                              >
+                                <nuxt-link
+                                  :to="`/video/${video.id}`"
+                                  title
+                                  v-if="video.isFree === 1 || available"
+                                >
                                   <span class="fr">
-                                    <i class="free-icon vam mr10" v-if="video.isFree === 1">免费试听</i>
-                                    <i class="free-icon vam mr10" v-else>立即观看</i>
+                                    <i
+                                      class="free-icon vam mr10"
+                                      v-if="video.isFree === 1"
+                                      >免费试听</i
+                                    >
+                                    <i class="free-icon vam mr10" v-else
+                                      >立即观看</i
+                                    >
                                   </span>
                                   <em class="lh-menu-i-2 icon16 mr5">&nbsp;</em
                                   >{{ video.title }}
                                 </nuxt-link>
-                                <a href="#" title style="color: grey;" v-else>
+                                <a href="#" title style="color: grey" v-else>
                                   <span class="fr">
                                     <i class="free-icon vam mr10">请先购买</i>
                                   </span>
@@ -152,7 +184,9 @@
           <div class="i-box">
             <div>
               <section class="c-infor-tabTitle c-tab-title">
-                <nuxt-link title :to="`/teacher/${courseInfo.teacherId}`">主讲讲师</nuxt-link>
+                <nuxt-link title :to="`/teacher/${courseInfo.teacherId}`"
+                  >主讲讲师</nuxt-link
+                >
               </section>
               <section class="stud-act-list">
                 <ul style="height: auto">
@@ -168,7 +202,11 @@
                       </a>
                     </div>
                     <section class="hLh30 txtOf">
-                      <a class="c-333 fsize16 fl" href="#">{{ courseInfo.teacherName }}</a>
+                      <nuxt-link
+                        class="c-333 fsize16 fl"
+                        :to="`/teacher/${courseInfo.teacherId}`"
+                        >{{ courseInfo.teacherName }}</nuxt-link
+                      >
                     </section>
                     <section class="hLh20 txtOf">
                       <span class="c-999">{{ courseInfo.teacherIntro }}</span>
@@ -197,13 +235,14 @@ export default {
       return {
         courseInfo: respond.data.data.details,
         chapters: respond.data.data.chapters,
-        courseId: params.id
+        courseId: params.id,
       }
     })
   },
   data() {
     return {
       isLogined: null,
+      available: null,
     }
   },
 
@@ -224,10 +263,18 @@ export default {
 
     isPurchased() {
       if (this.courseInfo.price === 0) {
-        return true
+        this.available = true
       }
       order.isPurchased(this.courseId).then((respond) => {
-        return respond.data.code === 200
+        this.available = respond.data.code === 200 ? true : false
+      })
+    },
+
+    createOrder() {
+      order.saveOrder(this.courseId).then((response) => {
+        this.$router.push({
+          path: `/order/${response.data.data.orderNo}`,
+        })
       })
     },
   },
