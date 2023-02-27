@@ -76,6 +76,11 @@
 
 <script>
 import order from '@/api/order'
+import '~/assets/css/base.css'
+import '~/assets/css/activity_tab.css'
+import '~/assets/css/bottom_rec.css'
+import '~/assets/css/nice_select.css'
+import '~/assets/css/order.css'
 
 export default {
   asyncData({ params, error }) {
@@ -103,7 +108,7 @@ export default {
               message: '支付成功',
               type: 'success',
             })
-            this.$router.push(`/course/${this.courseInfo.courseId}`)
+            this.$router.push(`/course/${this.orderInfo.courseId}`)
           } else {
             this.$message({
               message: '支付失败:' + respond.data.message,
