@@ -44,8 +44,8 @@
               </span>
             </section>
             <section class="c-attr-mt">
-              <a href="#" title="立即观看" class="comm-btn c-btn-3">立即观看</a>
-              <!-- <a href="#" title="立即观看" class="comm-btn c-btn-3">立即观看</a> -->
+              <a href="#" title="立即观看" class="comm-btn c-btn-3" v-if="isPurchased()">立即观看</a>
+              <a href="#" title="立即购买" class="comm-btn c-btn-3" v-else>立即购买</a>
             </section>
           </section>
         </aside>
@@ -96,9 +96,6 @@
                   </h6>
                   <div class="course-txt-body-wrap">
                     <section class="course-txt-body">
-                      <!-- <p> -->
-                      <!--   {{ courseInfo.description }} -->
-                      <!-- </p> -->
                       <div v-html="courseInfo.description"></div>
                     </section>
                   </div>
@@ -113,28 +110,30 @@
                       <menu id="lh-menu" class="lh-menu mt10 mr10">
                         <ul>
                           <!-- 文件目录 -->
-                          <li class="lh-menu-stair">
+                          <li class="lh-menu-stair" v-for="(chapter, index) in chapters" v-bind:key="chapter.id">
                             <a
                               href="javascript: void(0)"
-                              title="第一章"
+                              :title="chapter.title"
                               class="current-1"
                             >
-                              <em class="lh-menu-i-1 icon18 mr10"></em>第一章
+                              <em class="lh-menu-i-1 icon18 mr10"></em>{{ chapter.title }}
                             </a>
                             <ol class="lh-menu-ol" style="display: block">
-                              <li class="lh-menu-second ml30">
-                                <a href="#" title>
+                              <li class="lh-menu-second ml30" v-for="(video) in chapters[index].children" v-bind:key="video.id">
+                                <nuxt-link :to="`/video/${video.id}`" title v-if="video.isFree === 1 || isPurchased()">
                                   <span class="fr">
-                                    <i class="free-icon vam mr10">免费试听</i>
+                                    <i class="free-icon vam mr10" v-if="video.isFree === 1">免费试听</i>
+                                    <i class="free-icon vam mr10" v-else>立即观看</i>
                                   </span>
                                   <em class="lh-menu-i-2 icon16 mr5">&nbsp;</em
-                                  >第一节
-                                </a>
-                              </li>
-                              <li class="lh-menu-second ml30">
-                                <a href="#" title class="current-2">
+                                  >{{ video.title }}
+                                </nuxt-link>
+                                <a href="#" title style="color: grey;" v-else>
+                                  <span class="fr">
+                                    <i class="free-icon vam mr10">请先购买</i>
+                                  </span>
                                   <em class="lh-menu-i-2 icon16 mr5">&nbsp;</em
-                                  >第二节
+                                  >{{ video.title }}
                                 </a>
                               </li>
                             </ol>
@@ -153,7 +152,7 @@
           <div class="i-box">
             <div>
               <section class="c-infor-tabTitle c-tab-title">
-                <a title href="javascript:void(0)">主讲讲师</a>
+                <nuxt-link title :to="`/teacher/${courseInfo.teacherId}`">主讲讲师</nuxt-link>
               </section>
               <section class="stud-act-list">
                 <ul style="height: auto">
@@ -161,7 +160,7 @@
                     <div class="u-face">
                       <a href="#">
                         <img
-                          src="@/assets/photo/teacher/1442297969808.jpg"
+                          :src="courseInfo.teacherAvatar"
                           width="50"
                           height="50"
                           alt
@@ -169,10 +168,10 @@
                       </a>
                     </div>
                     <section class="hLh30 txtOf">
-                      <a class="c-333 fsize16 fl" href="#">周杰伦</a>
+                      <a class="c-333 fsize16 fl" href="#">{{ courseInfo.teacherName }}</a>
                     </section>
                     <section class="hLh20 txtOf">
-                      <span class="c-999">毕业于北京大学数学系</span>
+                      <span class="c-999">{{ courseInfo.teacherIntro }}</span>
                     </section>
                   </li>
                 </ul>
@@ -189,36 +188,31 @@
 
 <script>
 import course from '@/api/course'
+import order from '@/api/order'
 import cookie from 'js-cookie'
 
 export default {
+  asyncData({ params, error }) {
+    return course.getCourseDetails(params.id).then((respond) => {
+      return {
+        courseInfo: respond.data.data.details,
+        chapters: respond.data.data.chapters,
+        courseId: params.id
+      }
+    })
+  },
   data() {
     return {
-      courseId: '',
-      courseInfo: {},
-      chapters: {},
       isLogined: null,
     }
   },
 
   created() {
-    if (this.$route.params && this.$route.params.id) {
-      this.courseId = this.$route.params.id
-    }
-    this.getCourseDetails()
     this.getLoginStatus()
+    this.isPurchased()
   },
 
   methods: {
-    getCourseDetails() {
-      if (this.courseId) {
-        course.getCourseDetails(this.courseId).then((respond) => {
-          this.courseInfo = respond.data.data.details
-          this.chapters = respond.data.data.chapters
-        })
-      }
-    },
-
     getLoginStatus() {
       let cookieValue = cookie.get('EDUSER')
       if (cookieValue) {
@@ -226,6 +220,15 @@ export default {
         return
       }
       this.isLogined = false
+    },
+
+    isPurchased() {
+      if (this.courseInfo.price === 0) {
+        return true
+      }
+      order.isPurchased(this.courseId).then((respond) => {
+        return respond.data.code === 200
+      })
     },
   },
 }

@@ -21,4 +21,11 @@ export default {
       method: 'post',
     })
   },
+
+  isPurchased(courseId) {
+    return request({
+      url: `/order/operation/isPurchased/${courseId}`,
+      method: 'get'
+    })
+  }
 }
