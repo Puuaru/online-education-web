@@ -45,7 +45,7 @@
             </section>
             <section class="c-attr-mt">
               <a
-                href="#"
+                href="#chapter-list"
                 title="立即观看"
                 class="comm-btn c-btn-3"
                 v-if="available"
@@ -115,7 +115,7 @@
                 </div>
                 <!-- /课程介绍 -->
                 <div class="mt50">
-                  <h6 class="c-g-content c-infor-title">
+                  <h6 class="c-g-content c-infor-title"  id="chapter-list">
                     <span>课程大纲</span>
                   </h6>
                   <section class="mt20">
@@ -143,7 +143,7 @@
                                 v-bind:key="video.id"
                               >
                                 <nuxt-link
-                                  :to="`/video/${video.id}`"
+                                  :to="`/player/${video.videoSourceId}`"
                                   title
                                   v-if="video.isFree === 1 || available"
                                 >
