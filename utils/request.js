@@ -2,7 +2,7 @@ import axios from 'axios'
 import cookie from 'js-cookie'
 
 const service = axios.create({
-  baseURL: 'http://localhost:80/',
+  baseURL: 'http://localhost:8080/',
   timeout: 5000,
 })
 

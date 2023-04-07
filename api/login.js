@@ -16,7 +16,7 @@ export default {
   },
   loginInGithub() {
     return request({
-      url: '/center/github',
+      url: '/center/member/login/github',
       method: 'get',
     })
   },
